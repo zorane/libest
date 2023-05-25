@@ -1421,8 +1421,7 @@ static EST_ERROR est_io_check_http_hdrs (HTTP_HEADER *hdrs, int hdr_cnt,
         /*
          * Content type
          */
-        memcmp_s(hdrs[i].name, sizeof(EST_HTTP_HDR_CT), EST_HTTP_HDR_CT,
-                 sizeof(EST_HTTP_HDR_CT), &cmp_result);
+        cmp_result = est_strcasecmp_s(hdrs[i].name, EST_HTTP_HDR_CT);
         if (!cmp_result) {
             content_type_present = 1;
             /*
@@ -1440,8 +1439,7 @@ static EST_ERROR est_io_check_http_hdrs (HTTP_HEADER *hdrs, int hdr_cnt,
             /*
              * Content Length
              */
-            memcmp_s(hdrs[i].name, sizeof(EST_HTTP_HDR_CL), EST_HTTP_HDR_CL,
-                     sizeof(EST_HTTP_HDR_CL), &cmp_result);
+            cmp_result = est_strcasecmp_s(hdrs[i].name, EST_HTTP_HDR_CL);
             if (!cmp_result) {
                 content_length_present = 1;
                 *cl = atoi(hdrs[i].value);
